@@ -10,18 +10,18 @@ let Destroyer = [1]
 const gameBoardContainerUser = document.getElementById("userGrid");
 const gameBoardContainerAI = document.getElementById("AIGrid");
 
-let gameBoardAI = [
-[0,0,0,0,0,1,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,1,0,0,0,0,0],
-[0,1,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0],
-[0,1,0,0,0,0,0,0,1,0],
-[0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0]
-];
+//let gameBoardAI = [
+//[0,0,0,0,0,1,0,0,0,0],
+//[0,0,0,0,0,0,0,0,0,0],
+//[0,0,0,0,0,0,0,0,0,0],
+//[0,0,0,0,1,0,0,0,0,0],
+//[0,1,0,0,0,0,0,0,0,0],
+//[0,0,0,0,0,0,0,0,0,0],
+//[0,0,0,0,0,0,0,0,0,0],
+//[0,1,0,0,0,0,0,0,1,0],
+//[0,0,0,0,0,0,0,0,0,0],
+//[0,0,0,0,0,0,0,0,0,0]
+//];
 
 let gameBoardUser = [    
 [0,0,0,0,0,0,0,0,0,0],
@@ -53,36 +53,40 @@ for (i = 0; i < columns; i++) {
 }
 
 //making the AI game board grid//
-for (i = 0; i < columns; i++) {
-	for (j = 0; j < rows; j++) {
+//for (i = 0; i < columns; i++) {
+	//for (j = 0; j < rows; j++) {
 		
 		
-		var square = document.createElement("div");
-		gameBoardAI.appendChild(square);
-		square.id = 's' + j + i;			
-		square.className= "gridsquare"
-		var topPosition = j * squareSize;
-		var leftPosition = i * squareSize;			
-		square.style.top = topPosition + 'px';
-		square.style.left = leftPosition + 'px';					
-    }	
-}
+		//var square = document.createElement("div");
+		//gameBoarContainerAI.appendChild(square);
+		//square.id = 's' + j + i;			
+		//square.className= "gridsquare"
+		//var topPosition = j * squareSize;
+		//var leftPosition = i * squareSize;			
+		//square.style.top = topPosition + 'px';
+		//square.style.left = leftPosition + 'px';					
+  //  }	
+//}
 
 
 
 const Squares = document.querySelectorAll('.gridsquare')
     for (i= 0; i < Squares.length; i++) {
-        Squares[i].addEventListener('click', (e) => setUp(e), false)
+        Squares[i].addEventListener('click', setUp)
     }
 
 
 function setUp(e) {
     count ++
     if (count >= 6) {
-        setUp(null)
-    missileLaunched()
-    }   
- if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 0) {
+        //setUp(null)
+        for (i= 0; i < Squares.length; i++) {
+            Squares[i].removeEventListener('click', setUp)
+    }  
+    for (i= 0; i < Squares.length; i++) {
+        Squares[i].addEventListener('click', missileLaunched)
+}  
+    } if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 0) {
         e.target.style.background  = 'white';
         gameBoardUser[e.target.id[2]][e.target.id[1]] = 1;
     }
@@ -90,7 +94,7 @@ function setUp(e) {
 
 }
 
-document.getElementById('start').onclick = function missileLaunched(){}
+//document.getElementById('start').onclick = function missileLaunched(){}
 
 //const Squares = document.querySelectorAll('.gridsquare')
 //for (i = 0; i < Squares.length; i++) {

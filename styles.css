@@ -11,8 +11,8 @@ h1 {
 }
 
 .container {
-    display:grid;
-    flex-direction:row;
+    display:flex;
+    flex-direction:column;
     flex-wrap:wrap;
     justify-content:center;
     align-content: center;
@@ -33,7 +33,14 @@ h1 {
   }
 
 .AI-grid {
-    
+    display:grid;
+    grid-template-columns:repeat(10,auto);
+    grid-template-rows:repeat(10,auto);
+    grid-gap:5px;
+    background-color:rgb(167, 18, 13);
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 
