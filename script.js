@@ -1,27 +1,24 @@
 const rows = 10;
 const columns = 10;
 const squareSize = 50;
-const smallrectangleSize = 50;
-const controller = new AbortController()
+const otherSquareSize = 50;
 let count = 0;
 let hitCount = 0;
-let Destroyer = [1]
-//const userGrid = document.getElementsByClassName("grid user-grid")
 const gameBoardContainerUser = document.getElementById("userGrid");
 const gameBoardContainerAI = document.getElementById("AIGrid");
 
-//let gameBoardAI = [
-//[0,0,0,0,0,1,0,0,0,0],
-//[0,0,0,0,0,0,0,0,0,0],
-//[0,0,0,0,0,0,0,0,0,0],
-//[0,0,0,0,1,0,0,0,0,0],
-//[0,1,0,0,0,0,0,0,0,0],
-//[0,0,0,0,0,0,0,0,0,0],
-//[0,0,0,0,0,0,0,0,0,0],
-//[0,1,0,0,0,0,0,0,1,0],
-//[0,0,0,0,0,0,0,0,0,0],
-//[0,0,0,0,0,0,0,0,0,0]
-//];
+let gameBoardAI = [
+[0,0,0,0,0,1,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,0,0,0,0,0],
+[0,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,1,0,0,0,0,0,0,1,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0]
+];
 
 let gameBoardUser = [    
 [0,0,0,0,0,0,0,0,0,0],
@@ -36,7 +33,8 @@ let gameBoardUser = [
 [0,0,0,0,0,0,0,0,0,0]
 ];
 
-//makes the gameboard user grid//
+
+//user Board//
 for (i = 0; i < columns; i++) {
 	for (j = 0; j < rows; j++) {
 		
@@ -52,81 +50,73 @@ for (i = 0; i < columns; i++) {
     }	
 }
 
-//making the AI game board grid//
-//for (i = 0; i < columns; i++) {
-	//for (j = 0; j < rows; j++) {
+//the AI game board//
+for (i = 0; i < columns; i++) {
+	for (j = 0; j < rows; j++) {
 		
 		
-		//var square = document.createElement("div");
-		//gameBoarContainerAI.appendChild(square);
-		//square.id = 's' + j + i;			
-		//square.className= "gridsquare"
-		//var topPosition = j * squareSize;
-		//var leftPosition = i * squareSize;			
-		//square.style.top = topPosition + 'px';
-		//square.style.left = leftPosition + 'px';					
-  //  }	
-//}
+		var square = document.createElement("div");
+		gameBoarContainerAI.appendChild(square2);
+		square2.id = 's' + j + i;			
+		square2.className= "gridsquare2"
+		var topPosition = j * squareSize;
+		var leftPosition = i * squareSize;			
+		square2.style.top = topPosition + 'px';
+		square2.style.left = leftPosition + 'px';					
+    }	
+}
 
-
-
+//user Gameboard Squares//
 const Squares = document.querySelectorAll('.gridsquare')
     for (i= 0; i < Squares.length; i++) {
         Squares[i].addEventListener('click', setUp)
     }
-
-
+//AI Gameboard Squares//
+const otherSquares = document.querySelectorAll(".othergridsquare")
+    for (i = 0; i < otherSquares.length; i++) {
+        otherSquares[i].addEventListener('click', missileLaunched)
+    }
+//set up for the User's Board//
 function setUp(e) {
     count ++
     if (count >= 6) {
-        //setUp(null)
-        for (i= 0; i < Squares.length; i++) {
+    for (i= 0; i < Squares.length; i++) {
             Squares[i].removeEventListener('click', setUp)
     }  
     for (i= 0; i < Squares.length; i++) {
         Squares[i].addEventListener('click', missileLaunched)
 }  
-    } if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 0) {
-        e.target.style.background  = 'white';
-        gameBoardUser[e.target.id[2]][e.target.id[1]] = 1;
+  
     }
-
-
 }
 
-//document.getElementById('start').onclick = function missileLaunched(){}
-
-//const Squares = document.querySelectorAll('.gridsquare')
-//for (i = 0; i < Squares.length; i++) {
-  //  Squares[i].addEventListener('click',(e) => missileLaunched(e), false)
-//}
-
-
 function missileLaunched (e) { 
-     if (gameBoardUser[e.target.id[2]][e.target.id[1]]== 0) {
+    //users missile launched code//
+    if (gameBoardUser[e.target.id[2]][e.target.id[1]]== 0) {
+        e.target.style.background = 'blue';
+        gameBoardUser[e.target.id[2]][e.target.id[1]] = 3
+     } else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 0) {
+         e.target.style.background  = 'white';
+         gameBoardUser[e.target.id[2]][e.target.id[1]] = 1;
+     }else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
+         e.target.style.background = 'red';
+         hitCount++;
+         if (hitCount == 5) {
+             alert("All enemies have been defeated! You win !")
+         }
+     }
+   //the ai's missile launched code//
+   else if (gameBoardAI[e.target.id[2]][e.target.id[1]]== 0) {
        e.target.style.background = 'blue';
-       gameBoardUser[e.target.id[2]][e.target.id[1]] = 3
-
+       gameBoardAI[e.target.id[2]][e.target.id[1]] = 3
+    } else if (gameBoardAI[e.target.id[2]][e.target.id[1]] == 1) {
+        e.target.style.background = 'red';   
+        gameBoardAI[e.target.id[2]][e.target.id[1]] = 2;
         hitCount++;
         if (hitCount == 5) {
-            endGame()
+            alert("You lose")
         }
-     } 
+
     }
-   
-//function placeBattleShip(e,gameBoardUser) {
-//for (i = 0; i < gameBoardUser.length; i++) {
-  //  var split = gameBoardUser[i].split()
-    //let gameBoardUser[i].split() = gameBoardUser
-//}
-//}
-
-
-//gameBoardUser.splice(index, )
-
-
-//I think using the slice method will be beneficial in this case)
-//function placeBattleShip (e, row, column){
-   // gameBoardUser[e.target.id[1][e.target.id[2]]] = 1
-  //  e.target.style.backgroundColor = 'green'
-//}
+     } 
+    
