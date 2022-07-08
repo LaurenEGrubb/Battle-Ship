@@ -52,18 +52,18 @@ for (i = 0; i < columns; i++) {
 }
 
 //the AI game board//
-for (k = 0; k < columns; k++) {
-	for (l = 0; l < rows; l++) {
+for (i = 0; i < columns; i++) {
+	for (j = 0; j < rows; j++) {
 		
 		
 		var squaretwo = document.createElement("div");
 		gameBoardContainerAI.appendChild(squaretwo);
-		squaretwo.id = 's' + k + l;			
+		squaretwo.id = 's' + j + i;			
 		squaretwo.className= "othergridsquare"
-		var topPosition = k * squareSize;
-		var leftPosition = l * squareSize;			
-		squaretwo.style.top = topPosition + 'xp';
-		squaretwo.style.left = leftPosition + 'xp';					
+		var topPosition = j * squareSize;
+		var leftPosition = i * squareSize;			
+		squaretwo.style.top = topPosition + 'px';
+		squaretwo.style.left = leftPosition + 'px';					
     }	
 }
 
@@ -74,8 +74,8 @@ const Squares = document.querySelectorAll('.gridsquare')
     }
 //AI Gameboard Squares//
 const otherSquares = document.querySelectorAll(".othergridsquare")
-    for (k = 0; k < otherSquares.length; k++) {
-        otherSquares[k].addEventListener('click', missileLaunched)
+    for (i = 0; i < otherSquares.length; i++) {
+        otherSquares[i].addEventListener('click', missileLaunched)
     }
 //set up for the User's Board//
 function setUp(e) {
@@ -107,10 +107,12 @@ function missileLaunched (e) {
      }else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
          e.target.style.background = 'red';
          hitCount++;
-         boardAttacked(e)
+         if (hitCount === 6) { 
+            alert ("Game Over")
+         }
+     }
+     boardAttacked(e)
     }
-}
-     
  //used math.random for boardAttacked to randomly loop through the users boar
 function boardAttacked (e) {
     let row= Math.floor(Math.random()*gameBoardUser.length)
@@ -124,7 +126,9 @@ function boardAttacked (e) {
         userSquare.style.background = "#FFFACD";
         gameBoardUser[row][column]= 3
         enemyHitCount++;
-       
+        if (enemyHitCount === 6) {
+            alert("Game Over")
+        }
     }
 }
   
