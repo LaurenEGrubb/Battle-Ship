@@ -4,6 +4,7 @@ const squareSize = 50;
 const otherSquareSize = 50;
 let count = 0;
 let hitCount = 0;
+let enemyHitCount = 0;
 const gameBoardContainerUser = document.getElementById("userGrid");
 const gameBoardContainerAI = document.getElementById("AIGrid");
 
@@ -55,14 +56,14 @@ for (i = 0; i < columns; i++) {
 	for (j = 0; j < rows; j++) {
 		
 		
-		var square = document.createElement("div");
-		gameBoarContainerAI.appendChild(square2);
-		square2.id = 's' + j + i;			
-		square2.className= "gridsquare2"
+		var squaretwo = document.createElement("div");
+		gameBoardContainerAI.appendChild(squaretwo);
+		squaretwo.id = 's' + j + i;			
+		squaretwo.className= "othergridsquare"
 		var topPosition = j * squareSize;
 		var leftPosition = i * squareSize;			
-		square2.style.top = topPosition + 'px';
-		square2.style.left = leftPosition + 'px';					
+		squaretwo.style.top = topPosition + 'px';
+		squaretwo.style.left = leftPosition + 'px';					
     }	
 }
 
@@ -78,6 +79,10 @@ const otherSquares = document.querySelectorAll(".othergridsquare")
     }
 //set up for the User's Board//
 function setUp(e) {
+    if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 0) {
+        e.target.style.background = 'white';
+        gameBoardUser[e.target.id[2]][e.target.id[1]] = 1
+    }
     count ++
     if (count >= 6) {
     for (i= 0; i < Squares.length; i++) {
@@ -85,8 +90,9 @@ function setUp(e) {
     }  
     for (i= 0; i < Squares.length; i++) {
         Squares[i].addEventListener('click', missileLaunched)
+        Squares[i].addEventListener('click', boardAttacked)
 }  
-  
+ 
     }
 }
 
@@ -101,22 +107,22 @@ function missileLaunched (e) {
      }else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
          e.target.style.background = 'red';
          hitCount++;
-         if (hitCount == 5) {
-             alert("All enemies have been defeated! You win !")
+         if (hitCount == 6) {
          }
      }
-   //the ai's missile launched code//
-   else if (gameBoardAI[e.target.id[2]][e.target.id[1]]== 0) {
-       e.target.style.background = 'blue';
-       gameBoardAI[e.target.id[2]][e.target.id[1]] = 3
-    } else if (gameBoardAI[e.target.id[2]][e.target.id[1]] == 1) {
-        e.target.style.background = 'red';   
-        gameBoardAI[e.target.id[2]][e.target.id[1]] = 2;
-        hitCount++;
-        if (hitCount == 5) {
-            alert("You lose")
-        }
-
+     boardAttacked(e)
     }
-     } 
+ 
+function boardAttacked (e) {
+     let randomAttack = gameBoardUser[Math.floor(Math.random()*gameBoardUser.length)];
+   if (randomAttack[e.target.id[2]][e.target.id[1]] == 0) {
+       e.target.style.background = 'blue';
+       
+   }else if(gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
+    e.target.style.background = 'red';
+    hitCount++;
     
+
+
+   }
+}
