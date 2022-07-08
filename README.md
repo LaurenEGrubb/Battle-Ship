@@ -6,7 +6,7 @@
 
 
 ### ***Description***
-#### A project I began working on after learning how to code for only two weeks. The project is to display the knowledge I gained from working with CSS, HTML and Javascript. It's based off a popular Belgian comic called Tin Tin. Later on I plan to animate the character's reactions when their ships are sunk.
+#### A project I began working on after learning how to code for only two weeks. The project is to display the knowledge I gained from working with CSS, HTML and Javascript. It's based off a popular Belgian comic called Tin Tin. Later on I plan to animate the character's reactions when their ships are sunk. Some of the features it contains is a randomly generated attack by an AI, different displays for the hit, miss  and ship. The AI board's ships are hidden from the user as well to provide a bigger challenge.
 ***
 
 ### ***Technologies Used***

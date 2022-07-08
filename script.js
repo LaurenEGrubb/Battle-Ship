@@ -119,7 +119,7 @@ function boardAttacked (e) {
         gameBoardUser[row][column]= 2
      } else if (gameBoardUser[row][column] === 0) {
         let userSquare = document.getElementById(`s${column}${row}`)
-        userSquare.style.background = "#FFFACD";
+        userSquare.style.background = "#002647";
         gameBoardUser[row][column]= 3
             }
     }
