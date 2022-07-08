@@ -112,17 +112,18 @@ function missileLaunched (e) {
      }
      boardAttacked(e)
     }
- //used math.random for boardAttacked to randomly loop through the users board to attack//
+ //used math.random for boardAttacked to randomly loop through the users boar
 function boardAttacked (e) {
-     let randomAttack = gameBoardUser[Math.floor(Math.random()*gameBoardUser.length)];
-   if (randomAttack[e.target.id[2]][e.target.id[1]] == 0) {
-       e.target.style.background = 'blue';
-       
-   }else if(gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
-    e.target.style.background = 'red';
-    hitCount++;
-    
-
-
-   }
+    let row= Math.floor(Math.random()*gameBoardUser.length)
+    let column = Math.floor(Math.random()*gameBoardUser.length)
+     if (gameBoardUser[row][column] === 1) {
+        let userSquare = document.getElementById(`s${column}${row}`)
+        userSquare.style.background = "red";
+        gameBoardUser[row][column]= 2
+     } else if (gameBoardUser[row][column] === 0) {
+        let userSquare = document.getElementById(`s${column}${row}`)
+        userSquare.style.background = "yellow";
+        gameBoardUser[row][column]= 3
+    }
 }
+  
