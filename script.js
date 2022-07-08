@@ -121,8 +121,7 @@ function boardAttacked (e) {
         let userSquare = document.getElementById(`s${column}${row}`)
         userSquare.style.background = "#FFFACD";
         gameBoardUser[row][column]= 3
-    
-        }
+            }
     }
 
   
