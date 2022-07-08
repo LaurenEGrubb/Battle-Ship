@@ -106,11 +106,7 @@ function missileLaunched (e) {
          gameBoardUser[e.target.id[2]][e.target.id[1]] = 1;
      }else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
          e.target.style.background = 'red';
-         hitCount++;
-         if (hitCount === 6) { 
-            alert ("Game Over")
-         }
-     }
+              }
      boardAttacked(e)
     }
  //used math.random for boardAttacked to randomly loop through the users boar
@@ -125,10 +121,8 @@ function boardAttacked (e) {
         let userSquare = document.getElementById(`s${column}${row}`)
         userSquare.style.background = "#FFFACD";
         gameBoardUser[row][column]= 3
-        enemyHitCount++;
-        if (enemyHitCount === 6) {
-            alert("Game Over")
+    
         }
     }
-}
+
   
