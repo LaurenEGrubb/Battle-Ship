@@ -95,7 +95,7 @@ function setUp(e) {
  
     }
 }
-
+//function for the user to launch missile, after they launch the missile, boardAttacked is invoked to create an immersive experience//
 function missileLaunched (e) { 
     //users missile launched code//
     if (gameBoardUser[e.target.id[2]][e.target.id[1]]== 0) {
@@ -112,7 +112,7 @@ function missileLaunched (e) {
      }
      boardAttacked(e)
     }
- 
+ //used math.random for boardAttacked to randomly loop through the users board to attack//
 function boardAttacked (e) {
      let randomAttack = gameBoardUser[Math.floor(Math.random()*gameBoardUser.length)];
    if (randomAttack[e.target.id[2]][e.target.id[1]] == 0) {
