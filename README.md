@@ -17,6 +17,7 @@
 
 ### ***Future Improvements***
 * Making animations for the ships.
+* Making AI ships random
 * Make board look more cartoony
 * Make it so that ships can occupy more than one gridsquare
 * Work on the aesthetic of the page more
