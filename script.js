@@ -9,14 +9,14 @@ const gameBoardContainerUser = document.getElementById("userGrid");
 const gameBoardContainerAI = document.getElementById("AIGrid");
 
 let gameBoardAI = [
-[0,0,0,0,0,1,0,0,0,0],
+[0,0,0,0,0,2,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,1,0,0,0,0,0],
-[0,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,2,0,0,0,0,0],
+[0,2,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0],
-[0,1,0,0,0,0,0,0,1,0],
+[0,2,0,0,0,0,0,0,2,0],
 [0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0]
 ];
@@ -98,28 +98,32 @@ function setUp(e) {
 //function for the user to launch missile, after they launch the missile, boardAttacked is invoked to create an immersive experience//
 function missileLaunched (e) { 
     //users missile launched code//
-    if (gameBoardUser[e.target.id[2]][e.target.id[1]]== 0) {
+    console.log(e.target.id[2],e.target.id[1])
+    if (gameBoardAI[e.target.id[2]][e.target.id[1]]== 0) {
         e.target.style.background = 'blue';
         gameBoardUser[e.target.id[2]][e.target.id[1]] = 3
-     } else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 0) {
+     } else if (gameBoardAI[e.target.id[2]][e.target.id[1]] == 0) {
          e.target.style.background  = 'white';
-         gameBoardUser[e.target.id[2]][e.target.id[1]] = 1;
-     }else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
+         gameBoardAI[e.target.id[2]][e.target.id[1]] = 1;
+     }else if (gameBoardAI[e.target.id[2]][e.target.id[1]] == 2) {
          e.target.style.background = 'red';
+        
+         
               }
+              
      boardAttacked(e)
     }
  //used math.random for boardAttacked to randomly loop through the users boar
 function boardAttacked (e) {
     let row= Math.floor(Math.random()*gameBoardUser.length)
     let column = Math.floor(Math.random()*gameBoardUser.length)
-     if (gameBoardUser[row][column] === 1) {
+    if (gameBoardUser[row][column] === 1) {
         let userSquare = document.getElementById(`s${column}${row}`)
         userSquare.style.background = "red";
         gameBoardUser[row][column]= 2
      } else if (gameBoardUser[row][column] === 0) {
         let userSquare = document.getElementById(`s${column}${row}`)
-        userSquare.style.background = "#002647";
+        userSquare.style.background = "#FFFACD";
         gameBoardUser[row][column]= 3
             }
     }
