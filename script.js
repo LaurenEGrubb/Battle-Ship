@@ -52,18 +52,18 @@ for (i = 0; i < columns; i++) {
 }
 
 //the AI game board//
-for (i = 0; i < columns; i++) {
-	for (j = 0; j < rows; j++) {
+for (k = 0; k < columns; k++) {
+	for (l = 0; l < rows; l++) {
 		
 		
 		var squaretwo = document.createElement("div");
 		gameBoardContainerAI.appendChild(squaretwo);
-		squaretwo.id = 's' + j + i;			
+		squaretwo.id = 's' + k + l;			
 		squaretwo.className= "othergridsquare"
-		var topPosition = j * squareSize;
-		var leftPosition = i * squareSize;			
-		squaretwo.style.top = topPosition + 'px';
-		squaretwo.style.left = leftPosition + 'px';					
+		var topPosition = k * squareSize;
+		var leftPosition = l * squareSize;			
+		squaretwo.style.top = topPosition + 'xp';
+		squaretwo.style.left = leftPosition + 'xp';					
     }	
 }
 
@@ -74,8 +74,8 @@ const Squares = document.querySelectorAll('.gridsquare')
     }
 //AI Gameboard Squares//
 const otherSquares = document.querySelectorAll(".othergridsquare")
-    for (i = 0; i < otherSquares.length; i++) {
-        otherSquares[i].addEventListener('click', missileLaunched)
+    for (k = 0; k < otherSquares.length; k++) {
+        otherSquares[k].addEventListener('click', missileLaunched)
     }
 //set up for the User's Board//
 function setUp(e) {
@@ -107,11 +107,10 @@ function missileLaunched (e) {
      }else if (gameBoardUser[e.target.id[2]][e.target.id[1]] == 1) {
          e.target.style.background = 'red';
          hitCount++;
-         if (hitCount == 6) {
-         }
-     }
-     boardAttacked(e)
+         boardAttacked(e)
     }
+}
+     
  //used math.random for boardAttacked to randomly loop through the users boar
 function boardAttacked (e) {
     let row= Math.floor(Math.random()*gameBoardUser.length)
@@ -122,8 +121,10 @@ function boardAttacked (e) {
         gameBoardUser[row][column]= 2
      } else if (gameBoardUser[row][column] === 0) {
         let userSquare = document.getElementById(`s${column}${row}`)
-        userSquare.style.background = "yellow";
+        userSquare.style.background = "#FFFACD";
         gameBoardUser[row][column]= 3
+        enemyHitCount++;
+       
     }
 }
   
